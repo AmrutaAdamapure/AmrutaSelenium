@@ -1,0 +1,20 @@
+package Basic;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.decorators.WebDriverDecorator;
+
+public class LaunchTheBrowser {
+	public static void main(String[] args) {
+		//open the browser 
+		//ChromeDriver driver = new ChromeDriver();
+		// open browser by using upcasting 
+		WebDriver driver = new ChromeDriver();
+		driver.manage().window().maximize();
+		//open the webshop 
+		driver.get("https:demowebshop.tricentis.com/");
+		driver.close();
+		
+	}
+
+}
