@@ -8,6 +8,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -38,7 +39,7 @@ public class SocialMediaTracker{
             Thread.sleep(5000);
 
             // Step 3: Navigate to the user's profile
-            String userId = "amrita_150501"; // Replace with the user ID you want to track
+            String userId = "7_om_5402"; // Replace with the user ID you want to track
             driver.get("https://www.instagram.com/" + userId + "/");
 
             // Wait for the profile page to load
@@ -83,26 +84,34 @@ public class SocialMediaTracker{
             
             Thread.sleep(2000);
             driver.findElement(By.xpath("/html/body/div[6]/div[1]/div/div[2]/div/div/div/div/div/div/div[1]/div/div[4]/div")).click();
+            
+            Thread.sleep(2000);
+            driver.findElement(By.xpath("/html/body/div[2]/div/div/div[2]/div/div/div[1]/div[1]/div[1]/section/main/section/div/div/div/div[1]/div/div[2]/div/div/div[1]/div/div/div/div[2]/div/div/div[2]/div/div/div[2]/div/div[1]")).sendKeys("Hello, CodeApex gives you Final Year Projects.Click on the link below for Enquiry");
+            
+            Thread.sleep(2000);
+            driver.findElement(By.xpath("/html/body/div[2]/div/div/div[2]/div/div/div[1]/div[1]/div[1]/section/main/section/div/div/div/div[1]/div/div[2]/div/div/div[1]/div/div/div/div[2]/div/div/div[2]/div/div/div[3]")).click();
           
             driver.findElement(By.xpath("/html/body/div[2]/div/div/div[2]/div/div/div[1]/div[1]/div[2]/div/div/div/div/div[2]/div[4]/span/div/a")).click();
             
             Thread.sleep(7000);
             driver.findElement(By.xpath("/html/body/div[2]/div/div/div[2]/div/div/div[1]/div[1]/div[1]/section/main/div/div[1]/div/div[1]/div/div/div/div/div/div/div/div/div/div/div[1]/div[1]/div")).click();
-            Actions act = new Actions(driver);
-			Thread.sleep(15000);
-			act.keyDown(Keys.PAGE_DOWN).keyUp(Keys.PAGE_DOWN).perform();
-			
-			
             
+            for (int i = 0; i < 2;) 
+            {
+            	 Actions act = new Actions(driver);
+     			Thread.sleep(5000);
+     			act.keyDown(Keys.PAGE_DOWN).keyUp(Keys.PAGE_DOWN).perform();
+			}
+           
         } 
         catch (Exception e) 
         {
         	System.out.println("Its a private account so you can just view other details but cannot access it");
             //e.printStackTrace();
         } 
-//        finally 
-//        {
-//           driver.quit();
-//        }
+        finally 
+        {
+           //driver.quit();
+        }
     }
 }
