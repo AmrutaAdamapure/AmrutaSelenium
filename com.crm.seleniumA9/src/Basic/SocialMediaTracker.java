@@ -21,6 +21,7 @@ public class SocialMediaTracker{
 
         try {
             // Step 1: Navigate to Instagram login page
+        	driver.manage().window().maximize();
             driver.get("https://www.instagram.com/accounts/login/");
 
             // Wait for the login page to load
@@ -37,7 +38,7 @@ public class SocialMediaTracker{
             Thread.sleep(5000);
 
             // Step 3: Navigate to the user's profile
-            String userId = "7_om_5402"; // Replace with the user ID you want to track
+            String userId = "amrita_150501"; // Replace with the user ID you want to track
             driver.get("https://www.instagram.com/" + userId + "/");
 
             // Wait for the profile page to load
@@ -85,8 +86,8 @@ public class SocialMediaTracker{
           
             driver.findElement(By.xpath("/html/body/div[2]/div/div/div[2]/div/div/div[1]/div[1]/div[2]/div/div/div/div/div[2]/div[4]/span/div/a")).click();
             
-            Thread.sleep(3000);
-            driver.findElement(By.xpath("/html/body/div[2]/div/div/div[2]/div/div/div[1]/div[1]/div[1]/section/main/div/div[3]/div/div[1]/div/div/div/div/div/div/div/div/div/div/div[1]/div[1]/div")).click();
+            Thread.sleep(7000);
+            driver.findElement(By.xpath("/html/body/div[2]/div/div/div[2]/div/div/div[1]/div[1]/div[1]/section/main/div/div[1]/div/div[1]/div/div/div/div/div/div/div/div/div/div/div[1]/div[1]/div")).click();
             Actions act = new Actions(driver);
 			Thread.sleep(15000);
 			act.keyDown(Keys.PAGE_DOWN).keyUp(Keys.PAGE_DOWN).perform();
@@ -96,7 +97,8 @@ public class SocialMediaTracker{
         } 
         catch (Exception e) 
         {
-            e.printStackTrace();
+        	System.out.println("Its a private account so you can just view other details but cannot access it");
+            //e.printStackTrace();
         } 
 //        finally 
 //        {
