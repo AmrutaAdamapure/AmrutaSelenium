@@ -1,0 +1,45 @@
+package Basic;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.Keys;
+
+public class solution 
+{
+	    public static void main(String[] args) 
+	    {
+
+	        // Create a new instance of the Chrome driver
+	        WebDriver driver = new ChromeDriver();
+
+	        try {
+	            // Navigate to the desired URL
+	            driver.get("https://example.com");
+
+	            // Locate the search button (replace with your actual button locator)
+	            WebElement searchButton = driver.findElement(By.id("searchButtonId"));
+
+	            // Create an Actions object
+	            Actions actions = new Actions(driver);
+
+	            // Perform Control + Click on the search button to open in a new tab
+	            actions.keyDown(Keys.CONTROL).click(searchButton).keyUp(Keys.CONTROL).perform();
+
+	            
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        } finally {
+	            // Close the driver after a delay to see the result
+	            try {
+	                Thread.sleep(5000); // Wait for 5 seconds
+	            } catch (InterruptedException e) {
+	                e.printStackTrace();
+	            }
+	            driver.quit();
+	        }
+	    }
+	}
+}

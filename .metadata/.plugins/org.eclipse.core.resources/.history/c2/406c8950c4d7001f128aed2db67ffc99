@@ -1,0 +1,48 @@
+package Basic;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class solution {
+    public static void main(String[] args) {
+        
+        WebDriver driver = new ChromeDriver();
+
+        driver.get("https://www.cimatron.com/en/search");
+        driver.manage().window().maximize();
+
+        driver.findElement(By.xpath("/html/body/main/main/section/div/form/div/div[1]/div/input"))
+              .sendKeys("What's new on cimatron");
+
+        driver.findElement(By.xpath("/html/body/main/main/section/div/form/div/div[2]/button")).click();
+
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) 
+        {
+            e.printStackTrace();
+        }
+
+        String searchUrl = driver.getCurrentUrl();
+        ((JavascriptExecutor) driver).executeScript("window.open(arguments[0], '_blank');", searchUrl);
+        Thread.sleep(2000);
+        driver.findElement(By.xpath("/html/body/main/main/section/div/form/div/div[1]/div/input"))
+        .sendKeys("What's new on cimatron");
+
+
+  driver.findElement(By.xpath("/html/body/main/main/section/div/form/div/div[2]/button")).click();
+        
+
+        // Optionally, wait to see the new tab
+        try {
+            Thread.sleep(5000); // Wait for 5 seconds to see the results
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        // Close the browser
+        //driver.quit();
+    }
+}

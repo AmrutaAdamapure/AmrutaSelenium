@@ -1,0 +1,38 @@
+package Basic;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.Keys;
+
+public class solution {
+    public static void main(String[] args) {
+        // Set the path to the ChromeDriver executable
+        System.setProperty("webdriver.chrome.driver", "path/to/chromedriver");
+
+        // Create a new instance of the Chrome driver
+        WebDriver driver = new ChromeDriver();
+
+        // Open the specified website
+        driver.get("https://www.cimatron.com/en/search");
+        driver.manage().window().maximize();
+
+        // Enter the search query
+        driver.findElement(By.xpath("/html/body/main/main/section/div/form/div/div[1]/div/input"))
+              .sendKeys("What's new on cimatron");
+
+        // Open the search results in a new tab
+        driver.findElement(By.xpath("/html/body/main/main/section/div/form/div/div[2]/button"))
+              .sendKeys(Keys.chord(Keys.CONTROL, Keys.RETURN)); // For Windows/Linux
+        // For Mac, use Keys.chord(Keys.COMMAND, Keys.RETURN);
+
+        try {
+            Thread.sleep(5000); // Wait for 5 seconds to see the results
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        // Close the browser
+        driver.quit();
+    }
+}

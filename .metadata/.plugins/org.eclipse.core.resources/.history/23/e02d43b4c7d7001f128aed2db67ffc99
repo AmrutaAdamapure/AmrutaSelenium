@@ -1,0 +1,45 @@
+package Basic;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class solution {
+    public static void main(String[] args) {
+        
+        WebDriver driver = new ChromeDriver();
+
+        driver.get("https://www.cimatron.com/en/search");
+        driver.manage().window().maximize();
+
+        driver.findElement(By.xpath("/html/body/main/main/section/div/form/div/div[1]/div/input"))
+              .sendKeys("What's new on cimatron");
+
+        driver.findElement(By.xpath("/html/body/main/main/section/div/form/div/div[2]/button")).click();
+
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        String originalWindow = driver.getWindowHandle();
+        String searchUrl = driver.getCurrentUrl();
+
+        driver.switchTo().newWindow(org.openqa.selenium.WindowType.WINDOW);
+        driver.navigate().to(searchUrl);
+
+        driver.findElement(By.xpath("/html/body/main/main/section/div/form/div/div[1]/div/input")).sendKeys("What's new on cimatron");
+        driver.findElement(By.xpath("/html/body/main/main/section/div/form/div/div[2]/button")).click();
+
+        try {
+            Thread.sleep(3000); 
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        driver.switchTo().window(originalWindow);
+        driver.findElement(By.xpath("/html/body/main/main/section/div/form/div/div[1]/div/input")).sendKeys("");
+        driver.findElement(By.xpath("/html/body/main/main/section/div/form/div/div[2]/button")).click();
+
+        // driver.quit();
+    }
+}
