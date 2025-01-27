@@ -1,0 +1,136 @@
+package Basic;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Scanner;
+
+public class SocialMediaTracker
+{
+	public static WebDriver driver=new ChromeDriver();
+	public static int count=0;
+    public static void main(String[] args) 
+    {
+    	signup su=new signup();
+    	login lg=new login();
+    	viewId vd=new viewId();
+    	watchReel wr=new watchReel();
+    	chatSection cs=new chatSection();
+    try 
+   {
+    while (true) 
+    {
+    	driver.manage().window().minimize();;
+    	Scanner sc=new Scanner(System.in);
+    	System.out.println("");
+    	System.out.println("Select your option");
+    	System.out.println("1.SignUp Instagram \n2.Login Instagram \n3.Search Id \n4.Chat with an Id \n5.Scroll Reels");
+    	int option=sc.nextInt();
+    	
+    switch (option) 
+    {
+    
+    	case 1:
+    	{
+    		driver.get("https://www.instagram.com/accounts/emailsignup/");
+    		Thread.sleep(3000);
+    		
+    		
+    		System.out.println("Enter your mobile number or email id :");
+    		String input=sc.next();
+    		
+    		System.out.println("Enter your new password :");
+    		String pass=sc.next();
+    		
+    		System.out.println("Enter your full name :");
+    		String fullname=sc.next();
+    		
+    		System.out.println("Enter your username :");
+    		String username=sc.next();
+    		
+    		su.signup(input, pass, fullname, username,driver);
+    		break;
+    	}
+		case 2: 
+		{
+			driver.manage().window().minimize();;
+	        driver.get("https://www.instagram.com/accounts/login/");   
+	        Thread.sleep(2000);
+	        
+	        WebElement usernameField = driver.findElement(By.name("username"));
+	        WebElement passwordField = driver.findElement(By.name("password"));
+	        Thread.sleep(3000);
+	        
+	        System.out.println("Enter your instagram id:");
+	        Thread.sleep(10000);
+	        String username=sc.next();
+	        
+	        System.out.println("Enter your instagram password:");
+	        Thread.sleep(10000);
+	        String password=sc.next();
+	        
+			lg.loginFields(username, password,usernameField,passwordField,driver);
+			break;
+		}
+			
+		
+		case 3:
+		{
+			System.out.println("Enter the id you want to search:");
+            Thread.sleep(10000);
+        	String userId =sc.next();
+            driver.get("https://www.instagram.com/" + userId + "/");
+            Thread.sleep(7000);
+
+            try
+            {
+            vd.viewIdDetails(driver,count);
+            }
+            catch(Exception ex)
+            {
+            	System.out.println("This is private account");
+            }
+            Thread.sleep(30000);
+            break;
+		}
+		case 4:
+		{
+			System.out.println("Enter the id you want to chat with:");
+            Thread.sleep(10000);
+        	String userId =sc.next();
+            cs.chat(userId,driver);
+            
+            break;
+		}
+
+		case 5:
+		{
+			 wr.watchReels(driver);
+			 break;
+		}
+           
+    }
+    }
+    
+   }
+        catch (Exception e) 
+        {
+        	System.out.println("Its a private account so you can just view other details but cannot access it or you need to login first to perform other operations");
+            e.printStackTrace();
+        } 
+        finally 
+        {
+           driver.quit();
+        }
+    }
+
+}

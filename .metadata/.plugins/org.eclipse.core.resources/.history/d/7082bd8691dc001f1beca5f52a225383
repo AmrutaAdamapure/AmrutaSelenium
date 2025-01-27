@@ -1,0 +1,39 @@
+package Basic;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.interactions.Actions;
+
+public class watchReel 
+{
+//  ----------------------- REELS
+    
+  public static void watchReels(WebDriver driver) throws InterruptedException 
+  {
+  	
+  	driver.manage().window().maximize();
+  	Thread.sleep(5000);
+  	try {
+  		driver.findElement(By.xpath("/html/body/div[2]/div/div/div[2]/div/div/div[1]/div[1]/div[2]/div/div/div/div/div[2]/div[4]/span/div/a")).click();
+		} catch (Exception e) 
+  	{
+			Thread.sleep(3000);
+			driver.findElement(By.xpath("/html/body/div[2]/div/div/div[2]/div/div/div[1]/div[1]/div[2]/div/div/div/div/div[2]/div[4]/span/div/a/div/div[2]/div/div/span/span")).click();
+		}
+      
+      
+      Thread.sleep(7000);
+      driver.findElement(By.xpath("/html/body/div[2]/div/div/div[2]/div/div/div[1]/div[1]/div[1]/section/main/div/div[1]/div/div[1]/div/div/div/div/div/div/div/div/div/div/div[1]/div[1]/div")).click();
+      
+      for (int i = 0; i < 5;i++) 
+      {
+      	 Actions act = new Actions(driver);
+			Thread.sleep(5000);
+			act.keyDown(Keys.PAGE_DOWN).keyUp(Keys.PAGE_DOWN).perform();
+		}
+      driver.manage().window().minimize();
+      System.out.println("Reels were played");
+	}
+  
+}

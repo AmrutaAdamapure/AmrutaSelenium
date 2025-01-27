@@ -7,34 +7,19 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 public class login 
 {
-	SocialMediaTracker smt=new SocialMediaTracker();
-	public void login(String username,String password) 
+//  ------------------------ LOGIN
+  public void loginFields(String username,String password,WebElement usernameField,WebElement passwordField,WebDriver driver) 
 	{
 		try
 		{
-		driver.manage().window().minimize();;
-        driver.get("https://www.instagram.com/accounts/login/");
-        
-        Thread.sleep(2000);
-        
-        WebElement usernameField = driver.findElement(By.name("username"));
-        WebElement passwordField = driver.findElement(By.name("password"));
-        Thread.sleep(3000);
-        
-        System.out.println("Enter your instagram id:");
-        Thread.sleep(10000);
-        String username=sc.next();
-        
-        System.out.println("Enter your instagram password:");
-        Thread.sleep(10000);
-        String password=sc.next();
-        
-        usernameField.sendKeys(username);
-        passwordField.sendKeys(password);
-        passwordField.submit();
-        Thread.sleep(5000);
+      usernameField.sendKeys(username);
+      passwordField.sendKeys(password);
+      passwordField.submit();
+      System.out.println("Login successful");
+      Thread.sleep(5000);
 		}
-		catch (Exception e) {
+		catch (Exception e)
+		{
 			System.out.println("This is private account");
 		}
 	}

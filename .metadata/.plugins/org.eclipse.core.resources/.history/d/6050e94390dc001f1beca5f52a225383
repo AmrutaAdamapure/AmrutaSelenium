@@ -1,0 +1,85 @@
+package Basic;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class signup 
+{
+	public static void signup(String input,String pass,String fullname,String username, WebDriver driver) throws InterruptedException 
+    {
+    	driver=new ChromeDriver();
+    	Thread.sleep(3000);
+    	driver.findElement(By.xpath("/html/body/div[2]/div/div/div[2]/div/div/div[1]/div[1]/div/section/main/div/div/div[1]/div[2]/div/form/div[4]/div/label/input")).sendKeys(input);
+    	Thread.sleep(2000);
+    	
+    	driver.findElement(By.xpath("/html/body/div[2]/div/div/div[2]/div/div/div[1]/div[1]/div/section/main/div/div/div[1]/div[2]/div/form/div[5]/div/label/input")).click();
+    	Thread.sleep(5000);
+
+    	try
+    	{
+    	WebElement cross1=driver.findElement(By.xpath("/html/body/div[2]/div/div/div[2]/div/div/div[1]/div[1]/div/section/main/div/div/div[1]/div[2]/div/form/div[4]/div[2]"));
+    	if (cross1!=null) 
+    	{
+    		System.out.println("Enter valid mobile number or email");
+		}
+    	}
+    	catch (Exception e) 
+    	{
+    		driver.findElement(By.xpath("/html/body/div[2]/div/div/div[2]/div/div/div[1]/div[1]/div/section/main/div/div/div[1]/div[2]/div/form/div[5]/div/label/input")).sendKeys(pass);
+        	Thread.sleep(2000);
+        	
+        	driver.findElement(By.xpath("/html/body/div[2]/div/div/div[2]/div/div/div[1]/div[1]/div/section/main/div/div/div[1]/div[2]/div/form/div[6]/div/label/input")).click();
+        	
+    		try
+    		{
+    			Thread.sleep(3000);
+    			WebElement cross2=driver.findElement(By.xpath("/html/body/div[2]/div/div/div[2]/div/div/div[1]/div[1]/div/section/main/div/div/div[1]/div[2]/div/form/div[5]/div[2]"));
+    	    	if (cross2!=null) 
+    	    	{
+    	    		System.out.println("Enter valid password");
+    			}
+
+    		}
+    		catch (Exception e1) 
+    		{
+    			driver.findElement(By.xpath("/html/body/div[2]/div/div/div[2]/div/div/div[1]/div[1]/div/section/main/div/div/div[1]/div[2]/div/form/div[6]/div/label/input")).sendKeys(fullname);
+    	    	Thread.sleep(2000);
+    	    	driver.findElement(By.xpath("/html/body/div[2]/div/div/div[2]/div/div/div[1]/div[1]/div/section/main/div/div/div[1]/div[2]/div/form/div[7]/div/label/input")).click();
+    	    	Thread.sleep(5000);
+				try
+				{
+					WebElement cross3=driver.findElement(By.xpath("/html/body/div[2]/div/div/div[2]/div/div/div[1]/div[1]/div/section/main/div/div/div[1]/div[2]/div/form/div[6]/div[2]"));
+			    	if (cross3!=null) 
+			    	{
+			    		System.out.println("Enter valid full name");
+					}
+				}
+				catch (Exception e2) 
+				{
+					driver.findElement(By.xpath("/html/body/div[2]/div/div/div[2]/div/div/div[1]/div[1]/div/section/main/div/div/div[1]/div[2]/div/form/div[7]/div/label/input")).sendKeys(username);
+			    	Thread.sleep(2000);
+			    	try
+			    	{
+			    		Thread.sleep(3000);
+			    		WebElement cross4=driver.findElement(By.xpath("/html/body/div[2]/div/div/div[2]/div/div/div[1]/div[1]/div/section/main/div/div/div[1]/div[2]/div/form/div[4]/div[1]/div/span"));
+			        	if (cross4.equals(null)) 
+			        	{
+			        		Thread.sleep(3000);
+			        		driver.findElement(By.xpath("/html/body/div[2]/div/div/div[2]/div/div/div[1]/div[1]/div/section/main/div/div/div[1]/div[2]/div/form/div[9]/div/button")).click();
+			            	Thread.sleep(5000);
+			    			System.out.println("Signup successful");
+			    		}
+			    	}
+			    	catch (Exception e3) 
+			    	{
+			        		System.out.println("Either signup is successful as it is automated and not allowed or Enter valid username inputs");
+					}
+				}
+			}
+		}
+    	
+    	
+	}
+}
